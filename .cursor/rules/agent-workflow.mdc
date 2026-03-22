@@ -1,0 +1,31 @@
+---
+description: IDE agent workflow for incremental, test-first, traceable progress
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Cursor Agent Workflow Rule
+
+Follow the repository workflow in AGENTS.md.
+
+## Required Behavior
+
+1. Start by running `./scripts/init-session.sh`.
+2. Read `docs/task-list.json` and choose exactly one pending task.
+3. Implement only that task.
+4. Run relevant checks before claiming completion.
+5. Update only selected task status fields in `docs/task-list.json`.
+6. Append a structured handoff note to `docs/progress.md`.
+7. Commit with task-scoped message.
+
+## Constraints
+
+- No task skipping without explanation.
+- No task marked complete without evidence from checks.
+- No unrelated refactors.
+- Keep each session merge-ready.
+
+## If blocked
+
+Record blocker details in `docs/progress.md` and stop. Do not mark the task complete.

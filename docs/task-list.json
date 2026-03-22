@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-22T00:00:00Z",
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Define project architecture and acceptance criteria",
+      "priority": "high",
+      "category": "planning",
+      "description": "Fill docs/architecture.md with concrete product scope, constraints, and quality gates.",
+      "verification": [
+        "architecture document includes product objective, components, constraints, quality gates",
+        "acceptance criteria are explicit and testable"
+      ],
+      "passes": false,
+      "notes": "",
+      "updated_at": "2026-03-22T00:00:00Z"
+    },
+    {
+      "id": "T002",
+      "title": "Set up project scaffold",
+      "priority": "high",
+      "category": "setup",
+      "description": "Create initial runtime project structure based on architecture decisions.",
+      "verification": [
+        "project installs dependencies",
+        "project can run development mode",
+        "project can build"
+      ],
+      "passes": false,
+      "notes": "",
+      "updated_at": "2026-03-22T00:00:00Z"
+    },
+    {
+      "id": "T003",
+      "title": "Implement first user journey end-to-end",
+      "priority": "high",
+      "category": "feature",
+      "description": "Deliver a complete thin slice for the first user journey.",
+      "verification": [
+        "manual or automated end-to-end flow succeeds",
+        "relevant unit/integration tests pass"
+      ],
+      "passes": false,
+      "notes": "",
+      "updated_at": "2026-03-22T00:00:00Z"
+    }
+  ]
+}
