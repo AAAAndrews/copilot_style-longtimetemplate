@@ -1,57 +1,57 @@
-# IDE Agent Harness for Copilot and Cursor
+# Copilot/Cursor IDE Agent 长流程工作模板
 
-This repository provides a practical long-running agent workflow for IDE-based agents.
+这个仓库提供了一套可直接落地的、面向 IDE Agent 的长流程开发工作流。
 
-The design borrows core ideas from long-horizon agent harnesses:
-- explicit environment bootstrap
-- strict one-task-per-session execution
-- machine-readable task backlog
-- progress handoff notes between sessions
-- frequent commits for rollback and traceability
+整体设计借鉴了 long-running agent harness 的关键思想：
+- 显式环境初始化
+- 严格单会话单任务
+- 机器可读的任务清单
+- 会话之间可交接的进度记录
+- 高频小步提交，便于回滚与追踪
 
-It is adapted for GitHub Copilot Chat and Cursor Agent mode (not Claude Code CLI).
+本模板专为 GitHub Copilot Chat 与 Cursor Agent 模式适配，而不是 Claude Code CLI。
 
-## Goals
+## 目标
 
-- Keep each agent session small, testable, and recoverable.
-- Avoid unfinished partial changes across context windows.
-- Make project state easy to rehydrate in a fresh chat.
+- 让每次 Agent 会话都短小、可验证、可恢复。
+- 避免跨上下文窗口留下半成品改动。
+- 让新会话可以快速恢复项目上下文。
 
-## Repository Structure
+## 仓库结构
 
-- `.github/copilot-instructions.md`: Copilot-specific operating instructions.
-- `.cursor/rules/agent-workflow.mdc`: Cursor rule file with the same workflow contract.
-- `AGENTS.md`: universal workflow and checklists for any IDE agent.
-- `docs/architecture.md`: project architecture and constraints template.
-- `docs/task-list.json`: machine-readable task backlog and completion state.
-- `docs/progress.md`: chronological handoff log between sessions.
-- `scripts/init-session.sh`: get bearings, run baseline checks.
-- `scripts/select-next-task.sh`: suggest next pending task by priority.
+- `.github/copilot-instructions.md`: Copilot 专用执行说明。
+- `.cursor/rules/agent-workflow.mdc`: Cursor 规则文件，与 AGENTS 契约保持一致。
+- `AGENTS.md`: 面向任意 IDE Agent 的统一工作契约与检查清单。
+- `docs/architecture.md`: 项目架构与约束模板。
+- `docs/task-list.json`: 机器可读任务清单与完成状态。
+- `docs/progress.md`: 会话交接日志（按时间追加）。
+- `scripts/init-session.sh`: 会话启动检查脚本。
+- `scripts/select-next-task.sh`: 按优先级建议下一个任务。
 
-## Recommended Session Loop
+## 建议会话循环
 
-1. Run `./scripts/init-session.sh`.
-2. Read `docs/progress.md` and recent git commits.
-3. Select one task from `docs/task-list.json` with `passes: false`.
-4. Implement only that task.
-5. Validate with lint, tests, and build.
-6. Update `docs/task-list.json` for that task only.
-7. Append a short handoff entry to `docs/progress.md`.
-8. Commit with a focused message.
+1. 运行 `./scripts/init-session.sh`。
+2. 阅读 `docs/progress.md` 与近期 git 提交。
+3. 在 `docs/task-list.json` 中选择一个 `passes: false` 的任务。
+4. 只实现该任务。
+5. 运行 lint、tests、build 等验证。
+6. 仅更新该任务对象。
+7. 在 `docs/progress.md` 追加交接记录。
+8. 用聚焦提交信息完成提交。
 
-## Usage with Copilot Chat
+## Copilot Chat 使用方式
 
-- Open this folder in VS Code.
-- In Copilot Chat, ask the agent to follow `AGENTS.md` and complete the next pending task.
-- Keep approval mode enabled unless you explicitly want fully automated changes.
+- 在 VS Code 打开本目录。
+- 在 Copilot Chat 中要求 Agent 严格遵循 `AGENTS.md` 完成下一个任务。
+- 非必要不要关闭审批模式，避免误操作。
 
-## Usage with Cursor Agent
+## Cursor Agent 使用方式
 
-- Open this folder in Cursor.
-- Ensure `.cursor/rules/agent-workflow.mdc` is active.
-- Ask the agent to run the same loop: one task per run, full validation, progress update, commit.
+- 在 Cursor 打开本目录。
+- 确认 `.cursor/rules/agent-workflow.mdc` 已生效。
+- 指示 Agent 按同一循环执行：单任务、全验证、写进度、再提交。
 
-## Notes
+## 说明
 
-- This starter is intentionally generic. Replace architecture and tasks with your real project spec before coding.
-- Prefer JSON for backlog state to reduce accidental structural edits.
+- 该模板默认是通用骨架，正式开发前请先替换成你的真实架构与任务拆解。
+- 任务状态建议放在 JSON 中，能减少结构被误改的概率。

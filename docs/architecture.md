@@ -1,37 +1,37 @@
-# Project Architecture Template
+# 项目架构模板
 
-## Product Objective
+## 产品目标
 
-Describe the product in one paragraph.
+用一段话描述产品目标与业务价值。
 
-## User Journeys
+## 用户旅程
 
-- Journey 1:
-- Journey 2:
-- Journey 3:
+- 旅程 1：
+- 旅程 2：
+- 旅程 3：
 
-## System Components
+## 系统组件
 
-- Frontend:
-- Backend:
-- Data layer:
-- External services:
+- 前端：
+- 后端：
+- 数据层：
+- 外部服务：
 
-## Key Constraints
+## 关键约束
 
-- Performance:
-- Security:
-- Reliability:
-- Compliance:
+- 性能：
+- 安全：
+- 稳定性：
+- 合规：
 
-## Quality Gates
+## 质量门禁
 
-- Lint:
-- Unit tests:
-- Integration tests:
-- E2E tests:
-- Build:
+- Lint：
+- 单元测试：
+- 集成测试：
+- E2E 测试：
+- Build：
 
-## Definition of Production Ready
+## 可上线定义
 
-List objective requirements for release readiness.
+列出可客观验证的上线条件。

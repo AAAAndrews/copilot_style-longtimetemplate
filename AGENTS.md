@@ -1,73 +1,73 @@
-# AGENTS Workflow Contract
+# AGENTS 工作流契约
 
-This file defines the required behavior for any coding agent working in this repository.
+本文件定义了在该仓库中运行的任何编码 Agent 必须遵循的行为规范。
 
-## Non-Negotiable Rules
+## 不可协商规则
 
-1. Work on exactly one task per session.
-2. Never mark a task complete without running validation.
-3. Leave the repo in a merge-ready state at session end.
-4. Always write a progress handoff entry before finishing.
-5. Commit focused changes with a descriptive message.
+1. 每个会话只能处理一个任务。
+2. 未经过验证不得标记任务完成。
+3. 会话结束时仓库必须保持可合并状态。
+4. 结束前必须写入进度交接记录。
+5. 提交必须聚焦且信息清晰。
 
-## Session Start Checklist
+## 会话启动检查清单
 
-1. Run `pwd` and confirm workspace root.
-2. Run `./scripts/init-session.sh`.
-3. Read `docs/progress.md`.
-4. Read `docs/task-list.json`.
-5. Review recent commits: `git log --oneline -20`.
-6. Pick highest-priority task with `passes: false`.
+1. 运行 `pwd`，确认工作目录。
+2. 运行 `./scripts/init-session.sh`。
+3. 阅读 `docs/progress.md`。
+4. 阅读 `docs/task-list.json`。
+5. 查看近期提交：`git log --oneline -20`。
+6. 选择最高优先级且 `passes: false` 的任务。
 
-## Execution Policy
+## 执行策略
 
-- Scope: implement only the selected task.
-- If blocked, write blocker details in `docs/progress.md` and stop.
-- Do not refactor unrelated modules.
-- Keep diffs small and reversible.
+- 范围控制：只实现选中的那个任务。
+- 如遇阻塞：把阻塞详情写入 `docs/progress.md` 后停止。
+- 禁止对无关模块做重构。
+- 保持改动小而可回滚。
 
-## Validation Policy
+## 验证策略
 
-Run project validation commands relevant to the task, typically:
+根据任务影响范围执行相关校验，通常包括：
 - lint
-- unit tests
-- integration or e2e checks if impacted
+- 单元测试
+- 集成或 e2e（若受影响）
 - build
 
-If any command fails:
-- either fix within the same task scope
-- or record blocker and do not mark task as complete
+若有命令失败：
+- 要么在当前任务范围内修复
+- 要么记录阻塞并保持任务为未完成
 
-## Task Backlog Editing Rules
+## 任务清单编辑规则
 
-For `docs/task-list.json`:
-- modify only the selected task object
-- allowed fields to update: `passes`, `notes`, `updated_at`
-- never delete tasks
-- never reorder tasks unless explicitly requested
+对 `docs/task-list.json`：
+- 仅修改被选中任务对象
+- 允许变更字段：`passes`、`notes`、`updated_at`
+- 不得删除任务
+- 非明确要求不得重排任务顺序
 
-## Session End Checklist
+## 会话结束检查清单
 
-1. Confirm working tree is intentional.
-2. Update selected task state in `docs/task-list.json`.
-3. Append a handoff entry in `docs/progress.md`:
-   - date-time
-   - task id and title
-   - what changed
-   - validation results
-   - known risks
-   - next suggested task
-4. Commit all intended changes.
+1. 确认工作树变更均为预期内容。
+2. 更新选中任务在 `docs/task-list.json` 中的状态。
+3. 在 `docs/progress.md` 追加交接记录，至少包含：
+   - 时间
+   - 任务 id 与标题
+   - 变更说明
+   - 验证结果
+   - 已知风险
+   - 建议下一任务
+4. 提交所有预期改动。
 
-## Commit Message Format
+## 提交信息格式
 
-Use one of:
-- `feat(task-<id>): <short summary>`
-- `fix(task-<id>): <short summary>`
-- `chore(task-<id>): <short summary>`
-- `docs(task-<id>): <short summary>`
+使用以下任一种：
+- `feat(task-<id>): <简短说明>`
+- `fix(task-<id>): <简短说明>`
+- `chore(task-<id>): <简短说明>`
+- `docs(task-<id>): <简短说明>`
 
-## Suggested Prompt Snippets for IDE Agents
+## 建议提示词（IDE Agent）
 
-- "Follow AGENTS.md. Run init checklist, pick next pending task, implement only that task, validate, update docs/task-list.json and docs/progress.md, then commit."
-- "Follow AGENTS.md. Do not start new tasks if current task fails validation."
+- "请遵循 AGENTS.md：执行 init 检查清单，选择下一个未完成任务，只实现该任务，完成验证，更新 docs/task-list.json 与 docs/progress.md，然后提交。"
+- "请遵循 AGENTS.md：如果当前任务验证失败，不要开始新任务。"

@@ -4,13 +4,13 @@
   "tasks": [
     {
       "id": "T001",
-      "title": "Define project architecture and acceptance criteria",
+      "title": "定义项目架构与验收标准",
       "priority": "high",
       "category": "planning",
-      "description": "Fill docs/architecture.md with concrete product scope, constraints, and quality gates.",
+      "description": "在 docs/architecture.md 中补齐具体产品范围、约束条件与质量门禁。",
       "verification": [
-        "architecture document includes product objective, components, constraints, quality gates",
-        "acceptance criteria are explicit and testable"
+        "架构文档包含产品目标、系统组件、关键约束、质量门禁",
+        "验收标准明确且可测试"
       ],
       "passes": false,
       "notes": "",
@@ -18,14 +18,14 @@
     },
     {
       "id": "T002",
-      "title": "Set up project scaffold",
+      "title": "搭建项目基础脚手架",
       "priority": "high",
       "category": "setup",
-      "description": "Create initial runtime project structure based on architecture decisions.",
+      "description": "根据架构决策创建可运行的初始项目结构。",
       "verification": [
-        "project installs dependencies",
-        "project can run development mode",
-        "project can build"
+        "项目可以安装依赖",
+        "项目可以启动开发模式",
+        "项目可以构建"
       ],
       "passes": false,
       "notes": "",
@@ -33,13 +33,13 @@
     },
     {
       "id": "T003",
-      "title": "Implement first user journey end-to-end",
+      "title": "实现第一个用户旅程端到端闭环",
       "priority": "high",
       "category": "feature",
-      "description": "Deliver a complete thin slice for the first user journey.",
+      "description": "交付第一个用户旅程的完整薄切功能。",
       "verification": [
-        "manual or automated end-to-end flow succeeds",
-        "relevant unit/integration tests pass"
+        "手动或自动化端到端流程通过",
+        "相关单元/集成测试通过"
       ],
       "passes": false,
       "notes": "",

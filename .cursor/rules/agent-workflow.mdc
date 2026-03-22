@@ -5,27 +5,27 @@ globs:
 alwaysApply: true
 ---
 
-# Cursor Agent Workflow Rule
+# Cursor Agent 工作流规则
 
-Follow the repository workflow in AGENTS.md.
+遵循 `AGENTS.md` 中定义的仓库工作流。
 
-## Required Behavior
+## 必须行为
 
-1. Start by running `./scripts/init-session.sh`.
-2. Read `docs/task-list.json` and choose exactly one pending task.
-3. Implement only that task.
-4. Run relevant checks before claiming completion.
-5. Update only selected task status fields in `docs/task-list.json`.
-6. Append a structured handoff note to `docs/progress.md`.
-7. Commit with task-scoped message.
+1. 先运行 `./scripts/init-session.sh`。
+2. 阅读 `docs/task-list.json` 并只选择一个未完成任务。
+3. 仅实现该任务。
+4. 宣布完成前必须运行相关检查。
+5. 在 `docs/task-list.json` 中仅更新该任务允许变更的状态字段。
+6. 在 `docs/progress.md` 追加结构化交接记录。
+7. 以任务范围为单位提交。
 
-## Constraints
+## 约束
 
-- No task skipping without explanation.
-- No task marked complete without evidence from checks.
-- No unrelated refactors.
-- Keep each session merge-ready.
+- 禁止无说明跳过任务。
+- 无检查证据不得标记完成。
+- 禁止无关重构。
+- 每次会话结束都要保持可合并状态。
 
-## If blocked
+## 若发生阻塞
 
-Record blocker details in `docs/progress.md` and stop. Do not mark the task complete.
+将阻塞细节记录到 `docs/progress.md` 后停止，不得将任务标记为完成。

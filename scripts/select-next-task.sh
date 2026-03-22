@@ -4,7 +4,7 @@ set -euo pipefail
 file="docs/task-list.json"
 
 if [[ ! -f "$file" ]]; then
-  echo "task file not found: $file"
+  echo "未找到任务文件: $file"
   exit 1
 fi
 
@@ -19,7 +19,7 @@ if command -v jq >/dev/null 2>&1; then
   exit 0
 fi
 
-# Fallback parser without jq: print first task id with passes false.
+# 无 jq 的兜底解析：输出第一个 passes=false 的任务。
 awk '
   BEGIN { id=""; title=""; passes="" }
   /"id"[[:space:]]*:/ && id=="" {

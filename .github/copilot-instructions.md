@@ -1,40 +1,40 @@
-# Copilot Instructions: Long-Running Task Harness
+# Copilot 指令：长流程任务 Harness
 
-You are working in an IDE-first autonomous coding workflow.
+你运行在一个 IDE 优先的自治编码工作流中。
 
-## Primary Objective
+## 核心目标
 
-Complete exactly one pending task per session while preserving repository stability and traceability.
+每个会话仅完成一个未完成任务，并同时保证仓库稳定性与可追溯性。
 
-## Required Flow
+## 必须执行的流程
 
-1. Read `AGENTS.md` and follow it strictly.
-2. Run `./scripts/init-session.sh`.
-3. Inspect `docs/task-list.json`; pick one highest-priority `passes: false` task.
-4. Implement only that task.
-5. Run validation commands relevant to changes.
-6. Update only that task object in `docs/task-list.json`.
-7. Append a handoff entry in `docs/progress.md`.
-8. Commit with `type(task-<id>): summary`.
+1. 阅读 `AGENTS.md` 并严格遵循。
+2. 运行 `./scripts/init-session.sh`。
+3. 检查 `docs/task-list.json`，选择一个最高优先级且 `passes: false` 的任务。
+4. 只实现这个任务。
+5. 执行与改动相关的验证命令。
+6. 仅更新该任务对象在 `docs/task-list.json` 中的状态。
+7. 在 `docs/progress.md` 追加交接记录。
+8. 使用 `type(task-<id>): summary` 格式提交。
 
-## Guardrails
+## 护栏
 
-- No multi-task implementations in one session.
-- No destructive git commands.
-- No silent task completion without validation.
-- No broad formatting or unrelated refactors.
+- 单次会话禁止并行实现多个任务。
+- 禁止破坏性 git 命令。
+- 未验证不得静默宣布任务完成。
+- 禁止大范围格式化或无关重构。
 
-## Failure Handling
+## 失败处理
 
-If blocked:
-- Stop coding.
-- Document blocker, evidence, and reproduction steps in `docs/progress.md`.
-- Keep task `passes: false`.
+如遇阻塞：
+- 立即停止编码。
+- 在 `docs/progress.md` 记录阻塞、证据和复现步骤。
+- 任务保持 `passes: false`。
 
-## Definition of Done for a Task
+## 任务完成定义
 
-A task can be marked as done only when:
-- implementation is complete
-- relevant checks pass
-- no known critical regressions
-- backlog and progress files are updated
+只有同时满足以下条件，任务才可标记完成：
+- 实现已完成
+- 相关检查已通过
+- 无已知关键回归
+- 任务清单与进度文件均已更新
